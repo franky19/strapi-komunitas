@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "struktur_organisasis",
+  "info": {
+    "singularName": "struktur-organisasi",
+    "pluralName": "struktur-organisasis",
+    "displayName": "struktur_organisasi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "profil": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "jabatan": {
+      "type": "enumeration",
+      "enum": [
+        "Ketua",
+        "Wakil Ketua",
+        "Bendahara",
+        "Sekretaris",
+        "Bendahara I",
+        "Anggoat"
+      ]
+    }
+  }
+}
