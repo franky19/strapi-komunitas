@@ -939,6 +939,11 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    profile: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'api::profile.profile'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -960,6 +965,48 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
       'api::membership.membership'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiStrukturOrganisasiStrukturOrganisasi
+  extends Schema.CollectionType {
+  collectionName: 'struktur_organisasis';
+  info: {
+    singularName: 'struktur-organisasi';
+    pluralName: 'struktur-organisasis';
+    displayName: 'struktur_organisasi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nama: Attribute.String;
+    profil: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    jabatan: Attribute.Enumeration<
+      [
+        'Ketua',
+        'Wakil Ketua',
+        'Bendahara',
+        'Sekretaris',
+        'Bendahara I',
+        'Anggoat'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::struktur-organisasi.struktur-organisasi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::struktur-organisasi.struktur-organisasi',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -985,6 +1032,7 @@ declare module '@strapi/types' {
       'api::contact-message.contact-message': ApiContactMessageContactMessage;
       'api::galery.galery': ApiGaleryGalery;
       'api::membership.membership': ApiMembershipMembership;
+      'api::struktur-organisasi.struktur-organisasi': ApiStrukturOrganisasiStrukturOrganisasi;
     }
   }
 }
