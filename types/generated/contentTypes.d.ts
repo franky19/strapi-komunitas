@@ -788,6 +788,42 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAboutUsAboutUs extends Schema.SingleType {
+  collectionName: 'about_uses';
+  info: {
+    singularName: 'about-us';
+    pluralName: 'about-uses';
+    displayName: 'about_us';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    date_founded: Attribute.Date;
+    visi: Attribute.Text;
+    misi: Attribute.Text;
+    location_comunity: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us.about-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us.about-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCarouselCarousel extends Schema.CollectionType {
   collectionName: 'carousels';
   info: {
@@ -963,6 +999,40 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrganitationStructureOrganitationStructure
+  extends Schema.CollectionType {
+  collectionName: 'organitation_structures';
+  info: {
+    singularName: 'organitation-structure';
+    pluralName: 'organitation-structures';
+    displayName: 'organitation_structure';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    profile: Attribute.Media<'images'> & Attribute.Required;
+    position: Attribute.String;
+    period: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::organitation-structure.organitation-structure',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::organitation-structure.organitation-structure',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -981,10 +1051,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::carousel.carousel': ApiCarouselCarousel;
       'api::contact-message.contact-message': ApiContactMessageContactMessage;
       'api::galery.galery': ApiGaleryGalery;
       'api::membership.membership': ApiMembershipMembership;
+      'api::organitation-structure.organitation-structure': ApiOrganitationStructureOrganitationStructure;
     }
   }
 }
