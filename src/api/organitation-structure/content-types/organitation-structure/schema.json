@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organitation_structures",
+  "info": {
+    "singularName": "organitation-structure",
+    "pluralName": "organitation-structures",
+    "displayName": "organitation_structure",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "position": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    }
+  }
+}
